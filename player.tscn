@@ -1,10 +1,120 @@
-[gd_scene load_steps=4 format=3 uid="uid://bja47jhjle3gu"]
+[gd_scene load_steps=10 format=3 uid="uid://bja47jhjle3gu"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_irw7k"]
+[ext_resource type="PackedScene" uid="uid://dhel2afhg4yy4" path="res://Pistol.blend" id="2_hlkal"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xofv4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2dm5g"]
+
+[sub_resource type="Animation" id="Animation_0ftnw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.122173, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l1qte"]
+resource_name = "move"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5), Vector3(0.422538, -0.147248, -0.5), Vector3(0.5, -0.25, -0.5), Vector3(0.672297, -0.178825, -0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_0yue8"]
+resource_name = "shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.5, -0.201649, -0.5), Vector3(0.5, -0.305287, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.118682, 1.54811, 0.462512), Vector3(0.119232, 1.54884, -0.182346)]
+}
+
+[sub_resource type="Animation" id="Animation_cmwaw"]
+resource_name = "New Animation"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.5, -0.25, -0.5), Vector3(0.5, -0.331305, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.122173, 1.5708, 0), Vector3(0.117848, 1.5385, -0.268155)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nl2k5"]
+_data = {
+"RESET": SubResource("Animation_0ftnw"),
+"idle": SubResource("Animation_cmwaw"),
+"move": SubResource("Animation_l1qte"),
+"shoot": SubResource("Animation_0yue8")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_irw7k")
@@ -19,3 +129,13 @@ shape = SubResource("CapsuleShape3D_2dm5g")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50056, 0)
+
+[node name="Pistol" parent="Camera3D" instance=ExtResource("2_hlkal")]
+transform = Transform3D(-4.37114e-08, 0.121869, 0.992546, 0, 0.992546, -0.121869, -1, -5.32708e-09, -4.33856e-08, 0.5, -0.25, -0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+playback_default_blend_time = 0.05
+libraries = {
+"": SubResource("AnimationLibrary_nl2k5")
+}

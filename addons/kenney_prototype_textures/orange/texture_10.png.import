@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ca2uqmxnr6qcc"
-path.etc2="res://.godot/imported/texture_10.png-6f0f09db66c0562f01b2d2954722e3af.etc2.ctex"
+path.s3tc="res://.godot/imported/texture_10.png-6f0f09db66c0562f01b2d2954722e3af.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/kenney_prototype_textures/orange/texture_10.png"
-dest_files=["res://.godot/imported/texture_10.png-6f0f09db66c0562f01b2d2954722e3af.etc2.ctex"]
+dest_files=["res://.godot/imported/texture_10.png-6f0f09db66c0562f01b2d2954722e3af.s3tc.ctex"]
 
 [params]
 
