@@ -147,6 +147,7 @@ _data = {
 }
 
 [node name="player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_irw7k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -165,6 +166,7 @@ transform = Transform3D(-3.61999e-06, 0.121869, 0.992546, 0, 0.992546, -0.121869
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Pistol"]
 transform = Transform3D(1, -3.41061e-13, -3.86535e-12, 0, 1, 1.58511e-12, 0, 1.58511e-12, 1, 0.407576, 0.0642697, -0.00788993)
+layers = 3
 emitting = false
 amount = 1
 lifetime = 0.25
