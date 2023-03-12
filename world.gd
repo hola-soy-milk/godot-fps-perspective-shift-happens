@@ -26,6 +26,8 @@ func _on_host_button_pressed():
 	me.is_host = false
 	add_child(me)
 	
+	upnp_setup()
+	
 
 func _on_join_button_pressed():
 	main_menu.hide()
@@ -41,3 +43,21 @@ func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
+
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Discover Failed! Error %s" % discover_result)
+		
+	var gateway = upnp.get_gateway()
+
+	assert(gateway and gateway.is_valid_gateway(), \
+		"UPNP Invalid Gateway!")
+
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Port Mapping Failed! Error %s" % map_result)
+	
+	print("Success! Join Address: %s" % upnp.query_external_address())
