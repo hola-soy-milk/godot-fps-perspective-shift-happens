@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7q15soesnbjc"]
+[gd_scene load_steps=19 format=3 uid="uid://b7q15soesnbjc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6ight"]
 [ext_resource type="PackedScene" uid="uid://dhel2afhg4yy4" path="res://Pistol.blend" id="1_cjbkg"]
 [ext_resource type="Texture2D" uid="uid://bi307ugwa4wh5" path="res://addons/kenney_particle_pack/star_06.png" id="2_js7yw"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nde2d"]
+albedo_color = Color(0, 1, 0, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xofv4"]
+material = SubResource("StandardMaterial3D_nde2d")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2dm5g"]
 
@@ -36,6 +40,10 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_bm8on")
 size = Vector2(1, 1)
 orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1k6v"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_0ftnw"]
 length = 0.001
@@ -187,8 +195,17 @@ process_material = SubResource("ParticleProcessMaterial_muiu1")
 draw_pass_1 = SubResource("PlaneMesh_pirho")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+visible = false
 target_position = Vector3(0, 0, -50)
 collision_mask = 2
+debug_shape_thickness = 1
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -59.3768)
+layers = 2
+material_override = SubResource("StandardMaterial3D_f1k6v")
+radius = 0.01
+height = 118.162
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var anim_player = $AnimationPlayer
 @onready var muzzle_flash = $Camera3D/Pistol/MuzzleFlash
 @onready var raycast = $Camera3D/RayCast3D
+@onready var mesh = $MeshInstance3D
 
 var health = 3
 
@@ -83,9 +84,16 @@ func play_shoot_effects():
 @rpc("any_peer")
 func receive_damage():
 	health -= 1
+	var new_color = StandardMaterial3D.new()
+	if health == 2:
+		new_color.albedo_color = Color(1, 0, 1)
+	elif health == 1:
+		new_color.albedo_color = Color(1, 0, 0)
 	if health <= 0:
 		health = 3
+		new_color.albedo_color = Color(0, 1, 0)
 		position = Vector3.ZERO
+	mesh.set_surface_override_material(0, new_color)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "shoot":
