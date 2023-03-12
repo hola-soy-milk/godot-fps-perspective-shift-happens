@@ -7,6 +7,8 @@ const Player = preload("res://player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
+var me = Player.instantiate()
+var am_host = false
 
 # Called when the node enters the scene tree for the first time.
 func _unhandled_input(event):
@@ -19,8 +21,10 @@ func _on_host_button_pressed():
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
+	me.name = str(multiplayer.get_unique_id())
+	me.is_host = false
+	add_child(me)
 	
-	add_player(multiplayer.get_unique_id())
 
 func _on_join_button_pressed():
 	main_menu.hide()
@@ -28,6 +32,6 @@ func _on_join_button_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 
 func add_player(peer_id):
-	var player = Player.instantiate()
-	player.name = str(peer_id)
-	add_child(player)
+	var enemy = Player.instantiate()
+	enemy.name = str(peer_id)
+	add_child(enemy)

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+@export var is_host = true
 
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
@@ -13,14 +14,19 @@ var gravity = 20.0
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
+func can_move():
+	return is_host and not is_multiplayer_authority();
+
 func _ready():
-	if not is_multiplayer_authority(): return
-	
+	if can_move(): 
+		camera.current = true
+		return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	
 func _unhandled_input(event):
-	if not is_multiplayer_authority(): return
+	if can_move(): 
+		camera.current = true
+		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
 		camera.rotate_x(-event.relative.y * 0.005)
@@ -29,7 +35,9 @@ func _unhandled_input(event):
 		play_shoot_effects()
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
+	if can_move(): 
+		camera.current = true
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
