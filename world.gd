@@ -21,6 +21,7 @@ func _on_host_button_pressed():
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
 	me.name = str(multiplayer.get_unique_id())
 	me.is_host = false
 	add_child(me)
@@ -35,3 +36,8 @@ func add_player(peer_id):
 	var enemy = Player.instantiate()
 	enemy.name = str(peer_id)
 	add_child(enemy)
+
+func remove_player(peer_id):
+	var player = get_node_or_null(str(peer_id))
+	if player:
+		player.queue_free()
