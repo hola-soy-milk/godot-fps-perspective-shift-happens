@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bja47jhjle3gu"]
+[gd_scene load_steps=16 format=3 uid="uid://bja47jhjle3gu"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_irw7k"]
-[ext_resource type="PackedScene" uid="uid://dhel2afhg4yy4" path="res://Pistol.blend" id="2_hlkal"]
-[ext_resource type="Texture2D" uid="uid://bi307ugwa4wh5" path="res://addons/kenney_particle_pack/star_06.png" id="3_f6is4"]
+[ext_resource type="PackedScene" uid="uid://dhel2afhg4yy4" path="res://Pistol.blend" id="1_cjbkg"]
+[ext_resource type="Texture2D" uid="uid://bi307ugwa4wh5" path="res://addons/kenney_particle_pack/star_06.png" id="2_js7yw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xofv4"]
 
@@ -26,7 +25,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(1, 0.956863, 0.572549, 1)
-albedo_texture = ExtResource("3_f6is4")
+albedo_texture = ExtResource("2_js7yw")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -159,7 +158,6 @@ properties/2/sync = true
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_irw7k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01349, 0)
@@ -172,7 +170,7 @@ shape = SubResource("CapsuleShape3D_2dm5g")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50056, 0)
 
-[node name="Pistol" parent="Camera3D" instance=ExtResource("2_hlkal")]
+[node name="Pistol" parent="Camera3D" instance=ExtResource("1_cjbkg")]
 transform = Transform3D(-3.61999e-06, 0.121869, 0.992546, 0, 0.992546, -0.121869, -1, -4.41166e-07, -3.59301e-06, 0.5, -0.25, -0.5)
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="Camera3D/Pistol"]
