@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bja47jhjle3gu"]
+[gd_scene load_steps=17 format=3 uid="uid://b7q15soesnbjc"]
 
+[ext_resource type="Script" path="res://player.gd" id="1_6ight"]
 [ext_resource type="PackedScene" uid="uid://dhel2afhg4yy4" path="res://Pistol.blend" id="1_cjbkg"]
 [ext_resource type="Texture2D" uid="uid://bi307ugwa4wh5" path="res://addons/kenney_particle_pack/star_06.png" id="2_js7yw"]
 
@@ -156,8 +157,9 @@ properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/sync = true
 
-[node name="player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 collision_layer = 2
+script = ExtResource("1_6ight")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01349, 0)
