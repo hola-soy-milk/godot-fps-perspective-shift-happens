@@ -1,0 +1,23 @@
+{
+  "project": {
+    "name": "godot-fps-perspective-shift-happens",
+    "repository": "https://github.com/hola-soy-milk/godot-fps-perspective-shift-happens",
+    "readme_path": "./README.md"
+  },
+  "build": {
+    "dist_dir": "./public/",
+    "static_dir": "./static/",
+    "path_prefix": "godot-fps-perspective-shift-happens"
+  },
+  "styles": {
+    "theme": "cupcake"
+  },
+  "components": {
+    "md_book": {
+      "theme": true
+    },
+    "changelog": false,
+    "funding": false
+  },
+  "theme": "axolight"
+}
