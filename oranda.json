@@ -13,7 +13,7 @@
     "theme": "cupcake"
   },
   "components": {
-    "md_book": {
+    "mdbook": {
       "theme": true
     },
     "changelog": false,
